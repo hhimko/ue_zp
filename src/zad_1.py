@@ -2,19 +2,23 @@ def zad_a(names: list[str]) -> None:
     for name in names:
         print(name)
 
+
 def zad_b1(nums: list[float]) -> list[float]:
     res = []
     for num in nums:
         res.append(num * 2.0)
     return res
 
+
 def zad_b2(nums: list[float]) -> list[float]:
     return [num * 2.0 for num in nums]
+
 
 def zad_c(nums: list[int]) -> None:
     for num in nums:
         if num % 2 == 0:
             print(num)
+
 
 def zad_d(nums: list[int]) -> None:
     for i in range(0, len(nums) - 1, 2):
