@@ -2,6 +2,7 @@ from dataclasses import dataclass
 import requests
 import argparse
 
+
 @dataclass
 class Brewery:
     id: str
@@ -19,7 +20,7 @@ class Brewery:
     phone: int | None
     website_url: str | None
     state: str | None
-    street:str | None
+    street: str | None
 
 
 if __name__ == "__main__":
@@ -31,7 +32,8 @@ if __name__ == "__main__":
     url = ""
     if args.city is not None:
         city_arg = f"?by_city={args.city}"
-        url = f"https://api.openbrewerydb.org/v1/breweries{city_arg}&per_page={count}"
+        url = f"https://api.openbrewerydb.org/v1/breweries{city_arg}" \
+            f"&per_page={count}"
     else:
         url = f"https://api.openbrewerydb.org/v1/breweries?per_page={count}"
 
@@ -40,10 +42,14 @@ if __name__ == "__main__":
     breweries: list[Brewery] = []
     for obj in response:
         print(obj)
-        obj["latitude"] = float(obj["latitude"]) if obj["latitude"] is not None else None
-        obj["longitude"] = float(obj["longitude"]) if obj["longitude"] is not None else None
+        obj["latitude"] = float(obj["latitude"]) \
+            if obj["latitude"] is not None else None
+
+        obj["longitude"] = float(obj["longitude"]) \
+            if obj["longitude"] is not None else None
+
         obj["phone"] = int(obj["phone"]) if obj["phone"] is not None else None
-        
+
         breweries.append(Brewery(**obj))
 
     for brewery in breweries:

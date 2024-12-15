@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 import requests
 
+
 @dataclass
 class Brewery:
     id: str
@@ -18,7 +19,7 @@ class Brewery:
     phone: int | None
     website_url: str | None
     state: str | None
-    street:str | None
+    street: str | None
 
 
 if __name__ == "__main__":
@@ -30,8 +31,12 @@ if __name__ == "__main__":
     breweries: list[Brewery] = []
     for obj in response:
         print(obj)
-        obj["latitude"] = float(obj["latitude"]) if obj["latitude"] is not None else None
-        obj["longitude"] = float(obj["longitude"]) if obj["longitude"] is not None else None
+        obj["latitude"] = float(obj["latitude"]) \
+            if obj["latitude"] is not None else None
+
+        obj["longitude"] = float(obj["longitude"]) \
+            if obj["longitude"] is not None else None
+
         obj["phone"] = int(obj["phone"]) if obj["phone"] is not None else None
 
         breweries.append(Brewery(**obj))
